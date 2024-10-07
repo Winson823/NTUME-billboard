@@ -1,22 +1,61 @@
 <script setup lang="ts">
 import 'swiper/css'
 
-import axios from 'axios'
 import Swiper from 'swiper'
 import { Autoplay } from 'swiper/modules'
-import { computed, onMounted } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-// 引入 roomdata
-import roomData from '@/assets/roomdata.json'
+const roomData = ref<Room[]>([])
+let intervalID = null as number | null
+const dataTimeInterval = ref(5000)
+
+interface Room {
+  field: string
+  order: Order[]
+}
+
+interface Order {
+  time: string
+  name: string
+}
+
+import { Method, useFetchData } from '@/composables/useFetchData'
 
 // 初始化應用
 import { useInitApp } from './composables/useInitApp'
-const { initApp, currentLocale } = useInitApp()
+const { initApp } = useInitApp()
 
-// API 請求
+//亂數
+const generateRandomString = () => {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
+//API 請求
 async function initData() {
-  const resp = await axios.get('')
-  const reserveData = resp.data
+  try {
+    await getSpaceData()
+    return true //防止沒拿到資料卡住
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+const getSpaceData = async () => {
+  const {
+    result: [res],
+  } = await useFetchData({
+    url: './ntume/get_ntu_board_info',
+    method: Method.GET,
+  })
+  const rawRoomData = Array.isArray(res?.data) ? res.data : [] //檢查 res?.data 是否是一個數組。true: res.data / False []
+  // 添加或更新一個唯一的亂碼 ID
+  // const updatedRoomData = rawRoomData.map((room) => ({
+  //   ...room,
+  //   field: `${room.field}-${generateRandomString()}`,
+  // }))
+
+  // roomData.value = updatedRoomData
+  roomData.value = rawRoomData
+  console.log(roomData.value)
 }
 
 onMounted(async () => {
@@ -27,9 +66,21 @@ onMounted(async () => {
     modules: [Autoplay],
     loop: true, // 循環輪播
     autoplay: {
-      delay: 1000, //
+      delay: 2000, // 自動輪播延遲
     },
   })
+
+  //setInterval在window下執行其值為number
+  intervalID = window.setInterval(() => {
+    getSpaceData()
+  }, dataTimeInterval.value)
+})
+
+// 清除定時器，避免內存洩漏
+onBeforeUnmount(() => {
+  if (intervalID) {
+    clearInterval(intervalID)
+  }
 })
 
 // 取得當前時間字串
@@ -43,26 +94,33 @@ const getCurrentTimeString = () => {
 const currentTimeString = getCurrentTimeString()
 initApp()
 
-// 分頁 roomData，每頁最多 21 個
+const transformedRoomData = computed(() =>
+  roomData.value.map((room) => ({
+    field: room.field,
+    order: room.order.map((event) => ({
+      time: event.time,
+      name: event.name,
+    })),
+  })),
+)
+
+// 分頁 transformedRoomData，每頁最多 21 個
 const paginatedRoomData = computed(() => {
   const chunkSize = 21
   const pages = []
 
-  for (let i = 0; i < roomData.length; i += chunkSize) {
-    pages.push(roomData.slice(i, i + chunkSize))
+  for (let i = 0; i < transformedRoomData.value.length; i += chunkSize) {
+    pages.push(transformedRoomData.value.slice(i, i + chunkSize))
   }
-  console.log(pages)
+
   return pages
 })
 </script>
 
 <template>
-  <div class="h-[1920px]">
-    <!-- 公告欄 -->
-    <div class="announcement h-[30%] w-full bg-gray-300">123</div>
-
+  <div class="h-[full]">
     <!-- 房間區塊 -->
-    <div class="roomInfo h-[70%] w-full bg-black p-4 text-white">
+    <div class="roomInfo flex w-full justify-center bg-[#020414] p-4 text-[##CCF0FD]">
       <!-- 判斷 roomData 是否超過 21，使用 Swiper -->
       <div v-if="paginatedRoomData.length > 1" class="swiper">
         <div class="swiper-wrapper">
@@ -71,17 +129,23 @@ const paginatedRoomData = computed(() => {
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <!-- 使用 v-for 迭代每一頁中的 room -->
               <div
-                v-for="(room, index) in page"
+                v-for="(room, index) in page.filter(
+                  (room) =>
+                    room.order.filter((event) => event.time.split('-')[1] >= currentTimeString)
+                      .length > 0,
+                )"
                 :key="index"
-                class="h-[154px] w-[328px] rounded-[15px] border border-white bg-black p-4"
+                class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[#CCF0FD] p-4"
               >
                 <!-- 場域名稱 -->
-                <div class="location mb-6 text-[24px] font-bold">{{ room.location }}</div>
+                <div class="location mb-6 text-[20px]">
+                  {{ room.field }}
+                </div>
                 <!-- 活動列表 -->
                 <div class="events">
                   <div
-                    v-for="(event, eIndex) in room.events
-                      .filter((event) => event.endTime >= currentTimeString)
+                    v-for="(event, eIndex) in room.order
+                      .filter((event) => event.time.split('-')[1] >= currentTimeString)
                       .slice(0, 2)"
                     :key="eIndex"
                     class="event"
@@ -91,11 +155,11 @@ const paginatedRoomData = computed(() => {
                       class="flex items-center justify-between"
                       :class="{
                         'text-[#EBC999]':
-                          event.startTime <= currentTimeString &&
-                          event.endTime >= currentTimeString,
+                          event.time.split('-')[0] <= currentTimeString &&
+                          event.time.split('-')[1] >= currentTimeString,
                       }"
                     >
-                      <div class="time text-lg">{{ event.startTime }} - {{ event.endTime }}</div>
+                      <div class="time text-lg">{{ event.time }}</div>
                       <div class="name text-lg">
                         {{ event.name.length > 8 ? event.name.slice(0, 8) + '..' : event.name }}
                       </div>
@@ -111,17 +175,22 @@ const paginatedRoomData = computed(() => {
       <!-- 當 roomData 少於 21 時，正常顯示 -->
       <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div
-          v-for="(room, index) in roomData"
+          v-for="(room, index) in transformedRoomData"
           :key="index"
-          class="h-[154px] w-[328px] rounded-[15px] border border-white bg-black p-4"
+          class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[##CCF0FD] p-4"
+          :class="{
+            'border-[#EBC999]':
+              room.order[0]?.time.split('-')[0] <= currentTimeString &&
+              room.order[0]?.time.split('-')[1] >= currentTimeString,
+          }"
         >
           <!-- 場域名稱 -->
-          <div class="location mb-6 text-[24px] font-bold">{{ room.location }}</div>
+          <div class="location mb-6 text-[20px]">{{ room.field }}</div>
           <!-- 活動列表 -->
           <div class="events">
             <div
-              v-for="(event, eIndex) in room.events
-                .filter((event) => event.endTime >= currentTimeString)
+              v-for="(event, eIndex) in room.order
+                .filter((event) => event.time.split('-')[1] >= currentTimeString)
                 .slice(0, 2)"
               :key="eIndex"
               class="event"
@@ -131,10 +200,11 @@ const paginatedRoomData = computed(() => {
                 class="flex items-center justify-between"
                 :class="{
                   'text-[#EBC999]':
-                    event.startTime <= currentTimeString && event.endTime >= currentTimeString,
+                    event.time.split('-')[0] <= currentTimeString &&
+                    event.time.split('-')[1] >= currentTimeString,
                 }"
               >
-                <div class="time text-lg">{{ event.startTime }} - {{ event.endTime }}</div>
+                <div class="time text-lg">{{ event.time }}</div>
                 <div class="name text-lg">
                   {{ event.name.length > 8 ? event.name.slice(0, 8) + '..' : event.name }}
                 </div>
