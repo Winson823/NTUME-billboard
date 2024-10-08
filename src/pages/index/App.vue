@@ -5,19 +5,12 @@ import Swiper from 'swiper'
 import { Autoplay } from 'swiper/modules'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
+import RoomBlock from '@/pages/index/component/RoomBlock.vue'
+import { Order, Room } from '@/pages/index/composables/type'
+const dataTimeInterval = ref(1800000) //30mins
+
 const roomData = ref<Room[]>([])
 let intervalID = null as number | null
-const dataTimeInterval = ref(5000)
-
-interface Room {
-  field: string
-  order: Order[]
-}
-
-interface Order {
-  time: string
-  name: string
-}
 
 import { Method, useFetchData } from '@/composables/useFetchData'
 
@@ -52,7 +45,6 @@ const getSpaceData = async () => {
   //   ...room,
   //   field: `${room.field}-${generateRandomString()}`,
   // }))
-
   // roomData.value = updatedRoomData
   roomData.value = rawRoomData
   console.log(roomData.value)
@@ -120,7 +112,7 @@ const paginatedRoomData = computed(() => {
 <template>
   <div class="h-[full]">
     <!-- 房間區塊 -->
-    <div class="roomInfo flex w-full justify-center bg-[#020414] p-4 text-[##CCF0FD]">
+    <div class="roomInfo flex w-full justify-center bg-[url('@/assets/boardBg.png')] bg-cover p-4">
       <!-- 判斷 roomData 是否超過 21，使用 Swiper -->
       <div v-if="paginatedRoomData.length > 1" class="swiper">
         <div class="swiper-wrapper">
@@ -135,7 +127,12 @@ const paginatedRoomData = computed(() => {
                       .length > 0,
                 )"
                 :key="index"
-                class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[#CCF0FD] p-4"
+                class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-4"
+                :class="{
+                  '!border-[#03B0EC]':
+                    room.order[0]?.time.split('-')[0] <= currentTimeString &&
+                    room.order[0]?.time.split('-')[1] >= currentTimeString,
+                }"
               >
                 <!-- 場域名稱 -->
                 <div class="location mb-6 text-[20px]">
@@ -160,7 +157,7 @@ const paginatedRoomData = computed(() => {
                       }"
                     >
                       <div class="time text-lg">{{ event.time }}</div>
-                      <div class="name text-lg">
+                      <div class="name truncate-text text-lg">
                         {{ event.name.length > 8 ? event.name.slice(0, 8) + '..' : event.name }}
                       </div>
                     </div>
@@ -177,15 +174,15 @@ const paginatedRoomData = computed(() => {
         <div
           v-for="(room, index) in transformedRoomData"
           :key="index"
-          class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[##CCF0FD] p-4"
+          class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-4"
           :class="{
-            'border-[#EBC999]':
+            '!border-[#03B0EC] !shadow-[0_0_4px_3px_rgba(3,176,236,0.5)]':
               room.order[0]?.time.split('-')[0] <= currentTimeString &&
               room.order[0]?.time.split('-')[1] >= currentTimeString,
           }"
         >
           <!-- 場域名稱 -->
-          <div class="location mb-6 text-[20px]">{{ room.field }}</div>
+          <div class="location mb-6 text-[20px] text-white">{{ room.field }}</div>
           <!-- 活動列表 -->
           <div class="events">
             <div
@@ -205,8 +202,8 @@ const paginatedRoomData = computed(() => {
                 }"
               >
                 <div class="time text-lg">{{ event.time }}</div>
-                <div class="name text-lg">
-                  {{ event.name.length > 8 ? event.name.slice(0, 8) + '..' : event.name }}
+                <div class="name truncate-text text-lg">
+                  {{ event.name }}
                 </div>
               </div>
             </div>
@@ -217,4 +214,12 @@ const paginatedRoomData = computed(() => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.truncate-text {
+  width: 150px; /* 限制文本寬度 */
+  white-space: nowrap; /* 強制單行顯示 */
+  overflow: hidden; /* 隱藏溢出的部分 */
+  text-overflow: ellipsis; /* 超出部分用省略號表示 */
+  text-align: right;
+}
+</style>
