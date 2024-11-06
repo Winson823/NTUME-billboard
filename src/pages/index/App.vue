@@ -112,7 +112,9 @@ const paginatedRoomData = computed(() => {
 <template>
   <div class="h-[full]">
     <!-- 房間區塊 -->
-    <div class="roomInfo flex w-full justify-center bg-[url('@/assets/boardBg.png')] bg-cover p-4">
+    <div
+      class="roomInfo flex min-h-[855px] w-full justify-center bg-[url('@/assets/boardBg.png')] bg-cover p-4"
+    >
       <!-- 判斷 roomData 是否超過 21，使用 Swiper -->
       <div v-if="paginatedRoomData.length > 1" class="swiper">
         <div class="swiper-wrapper">
@@ -170,11 +172,11 @@ const paginatedRoomData = computed(() => {
       </div>
 
       <!-- 當 roomData 少於 21 時，正常顯示 -->
-      <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div v-else class="grid grid-cols-3 gap-4">
         <div
           v-for="(room, index) in transformedRoomData"
           :key="index"
-          class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-4"
+          class="break-point h-[95px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[12px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
           :class="{
             '!border-[#03B0EC] !shadow-[0_0_4px_3px_rgba(3,176,236,0.5)]':
               room.order[0]?.time.split('-')[0] <= currentTimeString &&
@@ -182,7 +184,9 @@ const paginatedRoomData = computed(() => {
           }"
         >
           <!-- 場域名稱 -->
-          <div class="location mb-6 text-[20px] text-white">{{ room.field }}</div>
+          <div class="location min-[720px]:w-[130px] mb-2 truncate text-sm text-white">
+            {{ room.field }}
+          </div>
           <!-- 活動列表 -->
           <div class="events">
             <div
@@ -201,8 +205,8 @@ const paginatedRoomData = computed(() => {
                     event.time.split('-')[1] >= currentTimeString,
                 }"
               >
-                <div class="time text-lg">{{ event.time }}</div>
-                <div class="name truncate-text text-lg">
+                <div class="time">{{ event.time }}</div>
+                <div class="name truncate-text ml-4 w-[70px]">
                   {{ event.name }}
                 </div>
               </div>
@@ -214,12 +218,24 @@ const paginatedRoomData = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .truncate-text {
-  width: 150px; /* 限制文本寬度 */
   white-space: nowrap; /* 強制單行顯示 */
   overflow: hidden; /* 隱藏溢出的部分 */
   text-overflow: ellipsis; /* 超出部分用省略號表示 */
   text-align: right;
+
+  @media (min-width: 720px) {
+    width: 100px;
+  }
+  @media (max-width: 719px) {
+    width: 50px;
+  }
+}
+
+.break-point {
+  @media (min-width: 720px) {
+    padding: 12px;
+  }
 }
 </style>
