@@ -120,7 +120,7 @@ const paginatedRoomData = computed(() => {
         <div class="swiper-wrapper">
           <!-- 使用 v-for 迭代每個分頁 -->
           <div v-for="(page, pageIndex) in paginatedRoomData" :key="pageIndex" class="swiper-slide">
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-3 gap-4">
               <!-- 使用 v-for 迭代每一頁中的 room -->
               <div
                 v-for="(room, index) in page.filter(
@@ -129,7 +129,7 @@ const paginatedRoomData = computed(() => {
                       .length > 0,
                 )"
                 :key="index"
-                class="h-[154px] w-[328px] rounded-[15px] border-[3px] border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-4"
+                class="break-point min-h-[100px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[12px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
                 :class="{
                   '!border-[#03B0EC]':
                     room.order[0]?.time.split('-')[0] <= currentTimeString &&
@@ -137,7 +137,9 @@ const paginatedRoomData = computed(() => {
                 }"
               >
                 <!-- 場域名稱 -->
-                <div class="location mb-6 text-[20px]">
+                <div
+                  class="location mb-2 truncate text-sm text-white min-[720px]:w-[190px] md:mb-4 md:w-full md:text-[24px]"
+                >
                   {{ room.field }}
                 </div>
                 <!-- 活動列表 -->
@@ -148,7 +150,7 @@ const paginatedRoomData = computed(() => {
                       .slice(0, 2)"
                     :key="eIndex"
                     class="event"
-                    :class="{ 'mt-1': eIndex !== 0 }"
+                    :class="{ 'mt-2': eIndex !== 0 }"
                   >
                     <div
                       class="flex items-center justify-between"
@@ -158,8 +160,8 @@ const paginatedRoomData = computed(() => {
                           event.time.split('-')[1] >= currentTimeString,
                       }"
                     >
-                      <div class="time text-lg">{{ event.time }}</div>
-                      <div class="name truncate-text text-lg">
+                      <div class="time">{{ event.time }}</div>
+                      <div class="name truncate-text">
                         {{ event.name.length > 8 ? event.name.slice(0, 8) + '..' : event.name }}
                       </div>
                     </div>
@@ -176,7 +178,7 @@ const paginatedRoomData = computed(() => {
         <div
           v-for="(room, index) in transformedRoomData"
           :key="index"
-          class="break-point h-[95px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[12px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
+          class="break-point min-h-[100px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[12px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
           :class="{
             '!border-[#03B0EC] !shadow-[0_0_4px_3px_rgba(3,176,236,0.5)]':
               room.order[0]?.time.split('-')[0] <= currentTimeString &&
@@ -184,7 +186,9 @@ const paginatedRoomData = computed(() => {
           }"
         >
           <!-- 場域名稱 -->
-          <div class="location min-[720px]:w-[130px] mb-2 truncate text-sm text-white">
+          <div
+            class="location mb-2 truncate text-sm text-white min-[720px]:w-[190px] md:mb-4 md:w-full md:text-[24px]"
+          >
             {{ room.field }}
           </div>
           <!-- 活動列表 -->
@@ -195,7 +199,7 @@ const paginatedRoomData = computed(() => {
                 .slice(0, 2)"
               :key="eIndex"
               class="event"
-              :class="{ 'mt-1': eIndex !== 0 }"
+              :class="{ 'mt-2': eIndex !== 0 }"
             >
               <div
                 class="flex items-center justify-between"
@@ -206,7 +210,7 @@ const paginatedRoomData = computed(() => {
                 }"
               >
                 <div class="time">{{ event.time }}</div>
-                <div class="name truncate-text ml-4 w-[70px]">
+                <div class="name truncate-text">
                   {{ event.name }}
                 </div>
               </div>
@@ -225,7 +229,7 @@ const paginatedRoomData = computed(() => {
   text-overflow: ellipsis; /* 超出部分用省略號表示 */
   text-align: right;
 
-  @media (min-width: 720px) {
+  @media (min-width: 719px) {
     width: 100px;
   }
   @media (max-width: 719px) {
