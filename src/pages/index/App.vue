@@ -7,7 +7,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import RoomBlock from '@/pages/index/component/RoomBlock.vue'
 import { Order, Room } from '@/pages/index/composables/type'
-const dataTimeInterval = ref(1800000) //30mins
+const dataTimeInterval = ref(300000) //30mins
 
 const roomData = ref<Room[]>([])
 let intervalID = null as number | null
@@ -174,11 +174,11 @@ const paginatedRoomData = computed(() => {
       </div>
 
       <!-- 當 roomData 少於 21 時，正常顯示 -->
-      <div v-else class="grid grid-cols-3 gap-4">
+      <div v-else class="grid grid-cols-3 gap-2">
         <div
           v-for="(room, index) in transformedRoomData"
           :key="index"
-          class="break-point min-h-[100px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[12px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
+          class="break-point min-h-[100px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[14px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
           :class="{
             '!border-[#03B0EC] !shadow-[0_0_4px_3px_rgba(3,176,236,0.5)]':
               room.order[0]?.time.split('-')[0] <= currentTimeString &&
@@ -186,9 +186,7 @@ const paginatedRoomData = computed(() => {
           }"
         >
           <!-- 場域名稱 -->
-          <div
-            class="location mb-2 truncate text-sm text-white min-[720px]:w-[190px] md:mb-4 md:w-full md:text-[24px]"
-          >
+          <div class="location mb-2 truncate text-base text-white md:mb-4 md:w-full md:text-[24px]">
             {{ room.field }}
           </div>
           <!-- 活動列表 -->
@@ -234,6 +232,11 @@ const paginatedRoomData = computed(() => {
   }
   @media (max-width: 719px) {
     width: 50px;
+  }
+}
+.location {
+  @media (min-width: 720px) {
+    width: 200px;
   }
 }
 
