@@ -7,7 +7,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import RoomBlock from '@/pages/index/component/RoomBlock.vue'
 import { Order, Room } from '@/pages/index/composables/type'
-const dataTimeInterval = ref(300000) //30mins
+const dataTimeInterval = ref(5000)
 
 const roomData = ref<Room[]>([])
 let intervalID = null as number | null
@@ -47,7 +47,6 @@ const getSpaceData = async () => {
   // }))
   // roomData.value = updatedRoomData
   roomData.value = rawRoomData
-  console.log(roomData.value)
 }
 
 onMounted(async () => {
@@ -58,7 +57,7 @@ onMounted(async () => {
     modules: [Autoplay],
     loop: true, // 循環輪播
     autoplay: {
-      delay: 2000, // 自動輪播延遲
+      delay: dataTimeInterval.value, // 自動輪播延遲
     },
   })
 
@@ -88,10 +87,10 @@ initApp()
 
 const transformedRoomData = computed(() =>
   roomData.value.map((room) => ({
-    field: room.field,
-    order: room.order.map((event) => ({
-      time: event.time,
-      name: event.name,
+    field: typeof room?.field === 'string' ? room.field : '',
+    order: (Array.isArray(room?.order) ? room.order : []).map((event) => ({
+      time: typeof event?.time === 'string' ? event.time : '',
+      name: typeof event?.name === 'string' ? event.name : '',
     })),
   })),
 )
@@ -104,7 +103,11 @@ const paginatedRoomData = computed(() => {
   for (let i = 0; i < transformedRoomData.value.length; i += chunkSize) {
     pages.push(transformedRoomData.value.slice(i, i + chunkSize))
   }
-
+  console.log('分頁資料:', {
+    總頁數: pages.length,
+    每頁資料筆數: pages.map((page) => page.length),
+    詳細資料: pages,
+  })
   return pages
 })
 </script>
@@ -123,17 +126,13 @@ const paginatedRoomData = computed(() => {
             <div class="grid grid-cols-3 gap-4">
               <!-- 使用 v-for 迭代每一頁中的 room -->
               <div
-                v-for="(room, index) in page.filter(
-                  (room) =>
-                    room.order.filter((event) => event.time.split('-')[1] >= currentTimeString)
-                      .length > 0,
-                )"
+                v-for="(room, index) in page"
                 :key="index"
                 class="break-point min-h-[100px] w-full rounded-[15px] border-2 border-[rgb(204,204,204,0.7)] bg-[rgb(2,4,20,0.6)] p-2 text-[10px] min-[720px]:text-[12px] lg:h-[154px] lg:w-[328px] lg:p-4 lg:text-[24px]"
                 :class="{
                   '!border-[#03B0EC]':
-                    room.order[0]?.time.split('-')[0] <= currentTimeString &&
-                    room.order[0]?.time.split('-')[1] >= currentTimeString,
+                    room.order[0]?.time?.split('-')[0] <= currentTimeString &&
+                    room.order[0]?.time?.split('-')[1] >= currentTimeString,
                 }"
               >
                 <!-- 場域名稱 -->
@@ -244,5 +243,15 @@ const paginatedRoomData = computed(() => {
   @media (min-width: 720px) {
     padding: 12px;
   }
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
