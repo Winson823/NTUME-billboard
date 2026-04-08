@@ -11,7 +11,7 @@ export function useInitApp() {
     try {
       onMounted(() => {
         // Set the CSS variables
-        setCssVar({ textColor: '#3944BC' })
+        setCssVar({ textColor: '#ffffff' })
       })
     } catch (error) {
       console.error(error)

@@ -3,7 +3,7 @@ import { Ref, ref } from 'vue'
 
 import { axiosInstance } from '@/plugins/axios' // Custom Axios
 
-enum Method {
+export enum Method {
   GET = 'get',
   POST = 'post',
 }

@@ -1,692 +1,221 @@
+
+
 [
-    {
-      "location": "101 成志國際演講聽",
-      "events": [
-        {
-          "startTime": "09:00",
-          "endTime": "10:00",
-          "name": "台大碩士研究第一場",
-          "type": "活動"
-        },
-        {
-          "startTime": "10:00",
-          "endTime": "13:00",
-          "name": "王建勳",
-          "type": "一般預約"
-        },
-        {
-          "startTime": "03:00",
-          "endTime": "17:00",
-          "name": "台大碩士研究第一場",
-          "type": "活動"
-        }
-      ]
-    },
-    {
-      "location": "ME427 四十四年班研討室",
-      "events": [
-        {
-          "startTime": "09:00",
-          "endTime": "10:00",
-          "name": "學術演講 A",
-          "type": "活動"
-        },
-        {
-          "startTime": "12:00",
-          "endTime": "13:00",
-          "name": "許庭瑋",
-          "type": "一般預約"
-        },
-        {
-          "startTime": "12:00",
-          "endTime": "13:00",
-          "name": "許庭瑋",
-          "type": "一般預約"
-        }
-      ]
-    },
-    {
-      "location": "103 進學講堂",
-      "events": [
-        {
-          "startTime": "09:00",
-          "endTime": "10:00",
-          "name": "文學分享會",
-          "type": "活動"
-        },
-        {
-          "startTime": "12:00",
-          "endTime": "13:00",
-          "name": "劉聞",
-          "type": "一般預約"
-        }
-      ]
-    },
-    {
-        "location": "109機皮教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "12:00",
-            "endTime": "13:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
+  {
+    "filed": "ME101 成志國際演講聽",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "台大碩士研究第一場"
       },
       {
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
+        "time": "10:00-17:00",
+        "name": "王建勳"
       },
       {
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
-      },{
-        "location": "113繼往教室",
-        "events": [
-          {
-            "startTime": "09:00",
-            "endTime": "10:00",
-            "name": "文學分享會文學分享會文學分享會",
-            "type": "活動"
-          },
-          {
-            "startTime": "14:00",
-            "endTime": "15:00",
-            "name": "劉聞",
-            "type": "一般預約"
-          }
-        ]
+        "time": "03:00-17:00",
+        "name": "台大碩士研究第一場"
       }
-  ]
+    ]
+  },
+  {
+    "filed": "ME117 繡山演講廳",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "學術演講 A"
+      },
+      {
+        "time": "12:00-13:00",
+        "name": "許庭瑋"
+      },
+      {
+        "time": "12:00-13:00",
+        "name": "許庭瑋"
+      }
+    ]
+  },
+  {
+    "filed": "ME103 進學講堂",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "12:00-13:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME B113 上銀創新實作中心",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "12:00-13:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME202 雨辰研討室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME201 清青研討室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME204 ME70研討室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME512 B70創新研討室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME113 繼往教室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME114 開來教室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME115 承先教室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME116 啟後教室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME109 機皮教室(未來教室)",
+    "order": [
+      {
+        "time": "09:00-17:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME219 B64研討室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME326 德欽研討室",
+    "order": [
+      {
+        "time": "16:00-19:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  },
+  {
+    "filed": "ME427 四十四年班研討室",
+    "order": [
+      {
+        "time": "09:00-10:00",
+        "name": "文學分享會"
+      },
+      {
+        "time": "14:00-15:00",
+        "name": "劉聞"
+      }
+    ]
+  }
+ 
+]

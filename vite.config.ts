@@ -13,7 +13,7 @@ import { htmlFiles, port, projectName } from './vite.config.shared'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: `/${projectName}/`,
+  base: `/owner/${projectName}/`,
   plugins: [
     vue(),
     topLevelAwait(),
@@ -35,6 +35,13 @@ export default defineConfig({
   },
   server: {
     port,
+    proxy: {
+      '/api': {
+        target: `https://gobooking.ddns.net`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
   build: {
     rollupOptions: {
